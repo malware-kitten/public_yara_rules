@@ -17,8 +17,8 @@ rule ace_filename {
  
   strings:
     $header = { 2a 2a 41 43 45 2a 2a }
-    $extensions = /malicious\.exe/ nocase
+    $filename = /malicious\.exe/ nocase
 
   condition:
-    for all of ($header*) : ( $extensions in (@+88-7..@+88-7+uint16(@+86-7)))
+    for all of ($header*) : ( $filename in (@+88-7..@+88-7+uint16(@+86-7)))
 }
